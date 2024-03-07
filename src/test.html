@@ -1,78 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compte à Rebours</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScrollTrigger Example</title>
+  <!-- Inclure le CDN de GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <!-- Inclure le CDN de ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+  <style>
+    /* Ajoutez vos styles CSS ici */
+    .animate1 {
+      height: 500px; /* Ajoutez une hauteur pour l'espace de défilement */
+      background-color: lightblue;
+      margin-top: 1000px; /* Ajoutez une marge pour que l'élément soit hors de vue au début */
+    }
+  </style>
 </head>
 <body>
-    <div id="countdown">
-        <div>
-            <span id="days"></span>
-            <div class="smalltext">Jours</div>
-        </div>
-        <div>
-            <span id="hours"></span>
-            <div class="smalltext">Heures</div>
-        </div>
-        <div>
-            <span id="minutes"></span>
-            <div class="smalltext">Minutes</div>
-        </div>
-        <div>
-            <span id="seconds"></span>
-            <div class="smalltext">Secondes</div>
-        </div>
-    </div>
-<style>#countdown {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
+  <!-- Contenu de la page -->
+  <div class="animate1">
+    <h1>Titre</h1>
+    <p>Contenu</p>
+    <button>Bouton</button>
+  </div>
 
-#countdown > div {
-    padding: 10px;
-    background-color: #f4f4f4;
-    margin: 0 10px;
-    border-radius: 5px;
-}
+  <!-- Script JavaScript pour définir les animations -->
+  <script>
+    // Créez une timeline GSAP pour vos animations
+    const tl = gsap.timeline({ defaults: { opacity: 0, y: 100 } });
 
-#countdown span {
-    font-weight: bold;
-    font-size: 24px;
-}
+    // Ajoutez vos animations à la timeline
+    tl.from(".animate1 h1", { duration: 1.5, ease: "power4.out" })
+      .from(".animate1 p", { duration: 1.5, ease: "power4.out" }, "-=1.2")
+      .from(".animate1 button", { duration: 1.5, ease: "power4.out" }, "-=1.2");
 
-.smalltext {
-    font-size: 12px;
-    color: #666;
-}
-</style>
-    <script>// Date de fin du compte à rebours (année, mois (0-11), jour, heure, minute, seconde)
-        var endDate = new Date(2024, 3, 15, 18, 30, 0);
-        
-        function countdown() {
-            var now = new Date();
-            var difference = endDate.getTime() - now.getTime();
-        
-            if (difference <= 0) {
-                clearInterval(interval);
-            } else {
-                var days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((difference % (1000 * 60)) / 1000);
-        
-                document.getElementById('days').innerText = days;
-                document.getElementById('hours').innerText = hours;
-                document.getElementById('minutes').innerText = minutes;
-                document.getElementById('seconds').innerText = seconds;
-            }
-        }
-        
-        countdown(); // Appel initial pour éviter un retard d'une seconde
-        
-        var interval = setInterval(countdown, 1000); // Actualise le compte à rebours chaque seconde
-        </script>
+    // Créez un ScrollTrigger pour déclencher l'animation lorsque l'élément est visible à l'écran
+    gsap.registerPlugin(ScrollTrigger); // Enregistrez ScrollTrigger en tant que plugin
+
+    // Définissez le déclencheur pour l'élément '.animate1'
+    ScrollTrigger.create({
+      trigger: ".animate1", // L'élément qui déclenche l'animation
+      start: "top 80%", // Démarrez l'animation lorsque le haut de l'élément est à 80% de la hauteur de la fenêtre
+      animation: tl, // L'animation que vous souhaitez déclencher
+      once: true // L'animation ne se déclenchera qu'une seule fois
+    });
+  </script>
 </body>
 </html>
