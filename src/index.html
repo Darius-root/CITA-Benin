@@ -233,10 +233,10 @@
 
             </div>
             <div class="flex-1 text-black lg:mt-14 justify-center items-center text-center ">
-                <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2  grid-cols-1 gap-4">
+                <div class="grid animate5 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2  grid-cols-1 gap-4">
 
                     <div
-                        class="p-3  h-64  w-64 mx-auto bg-white shadow-slate-500 shadow-md rounded-full overflow-hidden">
+                        class="p-3   h-64  w-64 mx-auto bg-white shadow-slate-500 shadow-md rounded-full overflow-hidden">
                         <div class="flex items-center justify-center pt-2">
                             <img class="object-cover h-36 w-36 " src="./images/Digital transformation-rafiki 1.png"
                                 alt="Image">
@@ -249,7 +249,7 @@
                         </div>
                     </div>
                     <div
-                        class="p-3  h-64  w-64 mx-auto bg-white shadow-slate-500 shadow-md rounded-full overflow-hidden">
+                        class="p-3   h-64  w-64 mx-auto bg-white shadow-slate-500 shadow-md rounded-full overflow-hidden">
                         <div class="flex items-center justify-center pt-2">
                             <img class="object-cover h-36 w-36 " src="./images/Server-bro 1.png" alt="Image">
                         </div>
@@ -265,7 +265,7 @@
                 <div class="hidden lg:flex items-center justify-center m-5">
                     <img src="./images/Group 10.png" alt="">
                 </div>
-                <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2  grid-cols-1 gap-4">
+                <div class="grid lg:grid-cols-2 animate6 md:grid-cols-2 sm:grid-cols-2  grid-cols-1 gap-4">
 
                     <div
                         class="p-3  h-64 mt-5 lg:mt-0  w-64 mx-auto bg-white shadow-slate-500 shadow-md rounded-full overflow-hidden">
@@ -711,11 +711,20 @@ tl.from(".animate1 h1", { duration: 1.5, ease: "power4.out",  })
     scrub: true
   } },);
 
-  gsap.from(".animate4", { opacity: 0, x: -100, duration: 1, scrollTrigger: {
+  gsap.from(".animate4", { x: 100, duration: 1, scrollTrigger: {
     trigger: ".animate4 ",
    
     scrub: true
+  }  }).fromTo(" .animate5", { x: 100 }, { x: -100, duration: 0.5, ease: "bounce" , scrollTrigger: {
+    trigger: " .animate5 ",
+   
+    scrub: true
+  }  }).fromTo(" .animate6", { x: 200 }, { x: -200, duration: 0.5, ease: "bounce" , scrollTrigger: {
+    trigger: " .animate6 ",
+   
+    scrub: true
   }  });
+  
  /*  */
 
 /*   gsap.fromTo(".animate2", {
